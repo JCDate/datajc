@@ -18,7 +18,10 @@ import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -469,7 +472,10 @@ public class SegPzsDaTMGUI extends javax.swing.JFrame {
                             //SELECT GROUP_CONCAT(pzaDañada SEPARATOR ' y ') AS ids_alumnos FROM cotizaciontmpd WHERE cotizacion LIKE '%13/2022%';
 
                             //
-                            PreparedStatement pst1 = cn.prepareStatement("INSERT INTO facturacionherramental (orden,cotizacion,componente,troquel, contacto) SELECT '"+orden+"',cotizacion, componente,cotizaciontmpd.troquel, '"+contacto+"' FROM cotizaciontmpd WHERE cotizacion='"+cotizacion+"'");
+                            Date date= new Date();
+                            DateFormat fechaHoraEnvi = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                            String fecha = fechaHoraEnvi.format(date).toString();
+                            PreparedStatement pst1 = cn.prepareStatement("INSERT INTO facturacionherramental (orden,cotizacion,componente,troquel, contacto,fechaHoraEnvi) SELECT '"+orden+"',cotizacion, componente,cotizaciontmpd.troquel, '"+contacto+"',"+fecha+" FROM cotizaciontmpd WHERE cotizacion='"+cotizacion+"'");
                             pst1.executeUpdate();
 
                             //piezas
