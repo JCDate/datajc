@@ -4143,7 +4143,7 @@ public class ComponentesRepGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("POSIBLES ORDENENES CANCELADAS");
+        jLabel9.setText("POSIBLES ORDENES CANCELADAS");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, 270, -1));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
