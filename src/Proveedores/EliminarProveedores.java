@@ -7,7 +7,12 @@ package Proveedores;
 
 import Modelos.ProveedoresM;
 import Modelos.Usuarios;
+import Servicios.Conexion;
 import Servicios.Proveedores_servicio;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,15 +37,63 @@ public class EliminarProveedores extends javax.swing.JFrame {
         this.mod=mod;
 
         txtNombre.setText(this.prov.getNombre());
-        jTextField2.setText(this.prov.getColonia());
-        jTextField9.setText(this.prov.getParque());
-        jTextField3.setText(String.valueOf(this.prov.getCodigoPostal()));
-        jTextField4.setText(this.prov.getCiudad());
-        jTextField5.setText(this.prov.getEstado());
-        jTextField8.setText(this.prov.getPais());
+        txtColonia.setText(this.prov.getColonia());
+        txtParque.setText(this.prov.getParque());
+        txtCP.setText(String.valueOf(this.prov.getCodigoPostal()));
+        txtCiudad.setText(this.prov.getCiudad());
+        txtEstado.setText(this.prov.getEstado());
+        txtPais.setText(this.prov.getPais());
         txtCalibre.setText(this.prov.getCalibre());                
     }
-
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("jc/img/jc.png"));
+        return retValue;
+    }
+    
+    private void eliminar(){
+        int respuesta = JOptionPane.showConfirmDialog(null,"La información del proveedor se eliminará ¿Estás de acuerdo?","ELIMINAR DATOS DE PROVEEDOR",JOptionPane.YES_NO_OPTION);
+        if(respuesta == JOptionPane.YES_OPTION){
+         //  JOptionPane.showConfirmDialog(null,"¿Estas Completamente de acuerdo?, la información ya no podrá recuperarse");
+            String nombre = txtNombre.getText();
+            String colonia = txtColonia.getText();
+            String parque = txtParque.getText();
+            String codigoPostal = txtCP.getText();
+            String ciudad = txtCiudad.getText();        
+            String estado = txtEstado.getText();
+            String pais = txtPais.getText();
+            String calibre= txtCalibre.getText();
+        
+            if(!nombre.trim().equals("")){
+                int  codigoPostalInt = Integer.parseInt(codigoPostal);
+                this.prov.setNombre(nombre);
+                this.prov.setColonia(colonia);
+                this.prov.setParque(parque);
+                this.prov.setCodigoPostal(codigoPostalInt);
+                this.prov.setCiudad(ciudad);            
+                this.prov.setEstado(estado);
+                this.prov.setPais(pais);
+                this.prov.setCalibre(calibre);
+                try{
+                    this.proveedores_servicio.eliminar(Conexion.obtener(), this.prov);
+                    JOptionPane.showMessageDialog(this, "Registro Eliminado Correctamente.");
+                    EliminarProveedores.this.dispose();
+                    ProveedoresGUI ca = new ProveedoresGUI(mod);
+                    ca.setVisible(true);
+                    ca.setLocationRelativeTo(null);
+                }catch(SQLException ex){
+                    System.out.println(ex.getMessage());
+                    JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido eliminar el registro.");
+                }catch(ClassNotFoundException ex){
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido eliminar el registro.");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "INGRESAR COMPONENTE.");
+            }   
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,46 +103,46 @@ public class EliminarProveedores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField5 = new javax.swing.JTextField();
+        txtEstado = new javax.swing.JTextField();
         txtCalibre = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblCalibre = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
+        txtCiudad = new javax.swing.JTextField();
+        lblPais = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
+        txtCP = new javax.swing.JTextField();
+        txtParque = new javax.swing.JTextField();
+        txtColonia = new javax.swing.JTextField();
+        lblCP = new javax.swing.JLabel();
+        lblParque = new javax.swing.JLabel();
         lblEliminar = new javax.swing.JLabel();
         lblProveedores = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblColonia = new javax.swing.JLabel();
+        lblCiudad = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        txtPais = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(830, 490));
-        setPreferredSize(new java.awt.Dimension(830, 490));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtEstado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtEstado.setEnabled(false);
+        txtEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtEstadoActionPerformed(evt);
             }
         });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEstado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
+                txtEstadoKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, 190, -1));
+        getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, 190, -1));
 
         txtCalibre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCalibre.setEnabled(false);
@@ -105,87 +158,91 @@ public class EliminarProveedores extends javax.swing.JFrame {
         });
         getContentPane().add(txtCalibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 150, 190, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
-        jButton2.setText("CANCELAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, -1, -1));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, -1, -1));
 
         lblCalibre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCalibre.setText("CALIBRE:");
         getContentPane().add(lblCalibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 120, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Eliminar.png"))); // NOI18N
-        jButton1.setText("ELIMINAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Eliminar.png"))); // NOI18N
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCiudad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCiudad.setEnabled(false);
+        txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField4KeyTyped(evt);
+                txtCiudadKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 190, -1));
+        getContentPane().add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, 190, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setText("PAÍS:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 120, -1));
+        lblPais.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPais.setText("PAÍS:");
+        getContentPane().add(lblPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 120, -1));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("ESTADO:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 120, -1));
+        lblEstado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblEstado.setText("ESTADO:");
+        getContentPane().add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 120, -1));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCP.setEnabled(false);
+        txtCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtCPActionPerformed(evt);
             }
         });
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
+                txtCPKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 190, -1));
+        getContentPane().add(txtCP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 190, -1));
 
-        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txtParque.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtParque.setEnabled(false);
+        txtParque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txtParqueActionPerformed(evt);
             }
         });
-        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtParque.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField9KeyTyped(evt);
+                txtParqueKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 190, -1));
+        getContentPane().add(txtParque, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 190, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtColonia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtColonia.setEnabled(false);
+        txtColonia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                txtColoniaKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 190, -1));
+        getContentPane().add(txtColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 190, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("C.P.");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
+        lblCP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCP.setText("C.P.");
+        getContentPane().add(lblCP, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel16.setText("PARQUE:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
+        lblParque.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblParque.setText("PARQUE:");
+        getContentPane().add(lblParque, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
 
         lblEliminar.setFont(new java.awt.Font("Wide Latin", 1, 24)); // NOI18N
         lblEliminar.setText("ELIMINAR");
@@ -200,15 +257,16 @@ public class EliminarProveedores extends javax.swing.JFrame {
         lblNombre.setText("NOMBRE:");
         getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 80, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("COLONIA:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
+        lblColonia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblColonia.setText("COLONIA:");
+        getContentPane().add(lblColonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("CIUDAD:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 100, -1));
+        lblCiudad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCiudad.setText("CIUDAD:");
+        getContentPane().add(lblCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, 100, -1));
 
         txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNombre.setEnabled(false);
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -221,25 +279,21 @@ public class EliminarProveedores extends javax.swing.JFrame {
         });
         getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 190, -1));
 
-        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txtPais.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPais.setEnabled(false);
+        txtPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txtPaisActionPerformed(evt);
             }
         });
-        jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPais.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField8KeyTyped(evt);
+                txtPaisKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 190, -1));
+        getContentPane().add(txtPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 190, -1));
 
         jPanel1.setBackground(new java.awt.Color(135, 206, 235));
-        jPanel1.setAlignmentX(0.5F);
-        jPanel1.setAlignmentY(0.5F);
-        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 32767));
-        jPanel1.setMinimumSize(new java.awt.Dimension(10, 10));
-        jPanel1.setPreferredSize(new java.awt.Dimension(10, 10));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 490));
 
         pack();
@@ -253,56 +307,56 @@ public class EliminarProveedores extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtNombreKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void txtColoniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColoniaKeyTyped
 
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_txtColoniaKeyTyped
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txtParqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtParqueActionPerformed
 
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txtParqueActionPerformed
 
-    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+    private void txtParqueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtParqueKeyTyped
 
-    }//GEN-LAST:event_jTextField9KeyTyped
+    }//GEN-LAST:event_txtParqueKeyTyped
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPActionPerformed
 
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtCPActionPerformed
 
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+    private void txtCPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPKeyTyped
         
-    }//GEN-LAST:event_jTextField3KeyTyped
+    }//GEN-LAST:event_txtCPKeyTyped
 
-    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+    private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
 
-    }//GEN-LAST:event_jTextField4KeyTyped
+    }//GEN-LAST:event_txtCiudadKeyTyped
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
 
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtEstadoActionPerformed
 
-    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+    private void txtEstadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstadoKeyTyped
 
-    }//GEN-LAST:event_jTextField5KeyTyped
+    }//GEN-LAST:event_txtEstadoKeyTyped
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaisActionPerformed
 
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtPaisActionPerformed
 
-    private void jTextField8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyTyped
+    private void txtPaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaisKeyTyped
 
-    }//GEN-LAST:event_jTextField8KeyTyped
+    }//GEN-LAST:event_txtPaisKeyTyped
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-  //      ModificarProveedores.this.dispose();
-    //    ProveedoresGUI ca = new ProveedoresGUI(mod);
-      //  ca.setVisible(true);
-       // ca.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        EliminarProveedores.this.dispose();
+        ProveedoresGUI ca = new ProveedoresGUI(mod);
+        ca.setVisible(true);
+        ca.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     //   this.guardar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        this.eliminar();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtCalibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalibreActionPerformed
 
@@ -348,26 +402,26 @@ public class EliminarProveedores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblCP;
     private javax.swing.JLabel lblCalibre;
+    private javax.swing.JLabel lblCiudad;
+    private javax.swing.JLabel lblColonia;
     private javax.swing.JLabel lblEliminar;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPais;
+    private javax.swing.JLabel lblParque;
     private javax.swing.JLabel lblProveedores;
+    private javax.swing.JTextField txtCP;
     private javax.swing.JTextField txtCalibre;
+    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtColonia;
+    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPais;
+    private javax.swing.JTextField txtParque;
     // End of variables declaration//GEN-END:variables
 }
