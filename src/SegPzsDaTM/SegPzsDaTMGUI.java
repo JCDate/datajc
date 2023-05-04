@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -448,34 +449,26 @@ public class SegPzsDaTMGUI extends javax.swing.JFrame {
         try {
             int fila_seleccionada = jTable1.getSelectedRow();
             int fila_seleccionada2 = jTable2.getSelectedRow();
-            if(fila_seleccionada >= 0){
-              
+            if(fila_seleccionada >= 0) {
                // String orden=JOptionPane.showInputDialog("INGRESAR ORDEN");
-
                 SegPzsDaTMGUI.this.dispose();
                 String orden = JOptionPane.showInputDialog("INGRESAR ORDEN");
-
                 //El usuario digito algo y NO le dio al boton cancelar
-                if(orden != null){
-
-                    orden = (String)orden;
+                if(orden != null) {
+                    orden = (String) orden;
                     //El usuario coloco algo que no sea solo espacios
-                    if(!orden.trim().equals("")){
+                    if(!orden.trim().equals("")) {
                         //Aqui deberias seguir tu codigo al validar que todo es correcto.
-                        if(this.sol_servicio.existeOrdenF(orden)== 0)
-                        {
+                        if(this.sol_servicio.existeOrdenF(orden)== 0) {
                             String contacto=JOptionPane.showInputDialog("INGRESAR CONTACTO");
                             String cotizacion = (String) jTable1.getValueAt(fila_seleccionada, 0);
-
                             //SELECT pzaDañada FROM cotizaciontmpd WHERE cotizacion LIKE '%13/2022%';
-
                             //SELECT GROUP_CONCAT(pzaDañada SEPARATOR ' y ') AS ids_alumnos FROM cotizaciontmpd WHERE cotizacion LIKE '%13/2022%';
-
                             //
                             Date date= new Date();
-                            DateFormat fechaHoraEnvi = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                            DateFormat fechaHoraEnvi= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                             String fecha = fechaHoraEnvi.format(date).toString();
-                            PreparedStatement pst1 = cn.prepareStatement("INSERT INTO facturacionherramental (orden,cotizacion,componente,troquel, contacto,fechaHoraEnvi) SELECT '"+orden+"',cotizacion, componente,cotizaciontmpd.troquel, '"+contacto+"',"+fecha+" FROM cotizaciontmpd WHERE cotizacion='"+cotizacion+"'");
+                            PreparedStatement pst1 = cn.prepareStatement("INSERT INTO facturacionherramental (orden,cotizacion,componente,troquel,contacto) SELECT '"+orden+"',cotizaciontmpd.cotizacion, cotizaciontmpd.componente,cotizaciontmpd.troquel, '"+contacto+"' FROM cotizaciontmpd WHERE cotizacion.cotizacion='"+cotizacion+"'");
                             pst1.executeUpdate();
 
                             //piezas
@@ -487,10 +480,14 @@ public class SegPzsDaTMGUI extends javax.swing.JFrame {
                             pst3.executeUpdate();
                             
                             //modificar orden
-                            /*PreparedStatement pst4 = cn.prepareStatement("UPDATE facturacionherramental SET orden = '"+orden+"' WHERE EXISTS (SELECT cotizacion WHERE cotizacion='"+cotizacion+"')");
+                           String sqlUpdate= "UPDATE facturacionherramental SET fechaHoraEnvi='"+fecha+"' WHERE orden= '"+orden+"' ";
+                            System.out.println(fecha);
+                            System.out.println("Hola");
+                           PreparedStatement pst4 = cn.prepareStatement(sqlUpdate);
+                            pst4.executeUpdate();
+                            /*PreparedStatement pst4 = cn.prepareStatement("UPDATE facturacionherramental SET fechaHoraEnvi = '"+fecha+"' WHERE facturacionherramental.orden='"+orden+"'");
                             pst4.executeUpdate();*/
-
-                            JOptionPane.showMessageDialog(this, "ORDEN ENVIADA A FACTURACIÓN");
+                            JOptionPane.showMessageDialog(this, "ORDEN ENVIADA A FACTURACIÓN"+fecha);
                             SegPzsDaTMGUI embarque= new SegPzsDaTMGUI(mod);
                             embarque.setVisible(true);
                         }else{
@@ -531,7 +528,14 @@ public class SegPzsDaTMGUI extends javax.swing.JFrame {
                             //SELECT GROUP_CONCAT(pzaDañada SEPARATOR ' y ') AS ids_alumnos FROM cotizaciontmpd WHERE cotizacion LIKE '%13/2022%';
 
                             //
-                            PreparedStatement pst1 = cn.prepareStatement("INSERT INTO facturacionherramental (orden,cotizacion,componente,troquel, contacto) SELECT '"+orden+"',cotizacion, componente,cotizaciontmpd.troquel, '"+contacto+"' FROM cotizaciontmpd WHERE cotizacion='"+cotizacion+"'");
+                            Date date= new Date();
+                            Calendar fechap = Calendar.getInstance();
+                            fechap.add(Calendar.HOUR,-1);
+                             date = fechap.getTime();
+                            DateFormat fechaHoraEnvi= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                
+                                String fecha = fechaHoraEnvi.format(date).toString();
+                            PreparedStatement pst1 = cn.prepareStatement("INSERT INTO facturacionherramental (orden,cotizacion,componente,troquel, contacto,fechaHoraEnvi) SELECT '"+orden+"',cotizacion, componente,cotizaciontmpd.troquel, '"+contacto+"','"+fecha+"' FROM cotizaciontmpd WHERE cotizacion='"+cotizacion+"'");
                             pst1.executeUpdate();
 
                             //piezas

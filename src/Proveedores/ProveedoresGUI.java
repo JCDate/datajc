@@ -61,8 +61,8 @@ public class ProveedoresGUI extends javax.swing.JFrame {
         jButton3.setContentAreaFilled(false);
         
         if(mod.getId_tipo()== 4){
-            jButton2.setEnabled(false);
-            jButton1.setEnabled(false);           
+            btnModificarProveedores.setEnabled(false);
+            btnAgregarProveedores.setEnabled(false);           
         }
     } 
      
@@ -113,8 +113,8 @@ public class ProveedoresGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAgregarProveedores = new javax.swing.JButton();
+        btnModificarProveedores = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -122,6 +122,8 @@ public class ProveedoresGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        btnEliminarProveedores = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -131,25 +133,25 @@ public class ProveedoresGUI extends javax.swing.JFrame {
         jLabel2.setText("PROVEEDORES");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 590, 50));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/1004733.png"))); // NOI18N
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarProveedores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAgregarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/1004733.png"))); // NOI18N
+        btnAgregarProveedores.setText("Agregar");
+        btnAgregarProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarProveedoresActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 130, 40));
+        getContentPane().add(btnAgregarProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 130, 40));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnModificarProveedores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
+        btnModificarProveedores.setText("Modificar");
+        btnModificarProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnModificarProveedoresActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 130, 40));
+        getContentPane().add(btnModificarProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 130, 40));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/boton_regresar.png"))); // NOI18N
@@ -197,24 +199,36 @@ public class ProveedoresGUI extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(135, 206, 235));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEliminarProveedores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Eliminar.png"))); // NOI18N
+        btnEliminarProveedores.setText("Eliminar");
+        btnEliminarProveedores.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnEliminarProveedores.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnEliminarProveedores.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnEliminarProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProveedoresActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 130, 40));
+        btnEliminarProveedores.getAccessibleContext().setAccessibleParent(this);
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 570));
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
+        jButton6.setText("Modificar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 130, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int fila_seleccionada = jTable1.getSelectedRow();
-         
-        if(fila_seleccionada >= 0){
-            ProveedoresGUI.this.dispose();
-            ModificarProveedores modificar = new ModificarProveedores(this.prov.get(fila_seleccionada),mod);
-            modificar.setVisible(true);
-            modificar.setLocationRelativeTo(null);
-        }else{
-            JOptionPane.showMessageDialog(this, "Por favor seleccione una fila.");
-        }           
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
            
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -229,17 +243,46 @@ public class ProveedoresGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAgregarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProveedoresActionPerformed
         ProveedoresGUI.this.dispose();
         AgregarProveedores vista = new AgregarProveedores(mod);
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAgregarProveedoresActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         excel.WriteExcelProveedores();
         JOptionPane.showMessageDialog(this, "Datos Exportados.");
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnModificarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProveedoresActionPerformed
+        int fila_seleccionada = jTable1.getSelectedRow();
+
+        if(fila_seleccionada >= 0){
+            ProveedoresGUI.this.dispose();
+            ModificarProveedores modificar = new ModificarProveedores(this.prov.get(fila_seleccionada),mod);
+            modificar.setVisible(true);
+            modificar.setLocationRelativeTo(null);
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una fila.");
+        }
+    }//GEN-LAST:event_btnModificarProveedoresActionPerformed
+
+    private void btnEliminarProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedoresActionPerformed
+        int fila_seleccionada = jTable1.getSelectedRow();
+        if(fila_seleccionada >= 0){
+            ProveedoresGUI.this.dispose();
+       //     EliminarProveedores modificar = new EliminarProveedores(this.prov.get(fila_seleccionada),mod);
+           //modificar.setVisible(true);
+           // modificar.setLocationRelativeTo(null);
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor seleccione una fila.");
+        }
+    }//GEN-LAST:event_btnEliminarProveedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,10 +324,12 @@ public class ProveedoresGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAgregarProveedores;
+    private javax.swing.JButton btnEliminarProveedores;
+    private javax.swing.JButton btnModificarProveedores;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
