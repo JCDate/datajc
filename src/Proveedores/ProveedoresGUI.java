@@ -61,8 +61,8 @@ public class ProveedoresGUI extends javax.swing.JFrame {
         jButton3.setContentAreaFilled(false);
         
         if(mod.getId_tipo()== 4){
-            btnModificarProveedores.setEnabled(false);
-            btnAgregarProveedores.setEnabled(false);           
+            btnModificarProveedores.setEnabled(true);
+            btnAgregarProveedores.setEnabled(true);           
         }
     } 
      
@@ -276,9 +276,9 @@ public class ProveedoresGUI extends javax.swing.JFrame {
         int fila_seleccionada = jTable1.getSelectedRow();
         if(fila_seleccionada >= 0){
             ProveedoresGUI.this.dispose();
-       //     EliminarProveedores modificar = new EliminarProveedores(this.prov.get(fila_seleccionada),mod);
-           //modificar.setVisible(true);
-           // modificar.setLocationRelativeTo(null);
+            EliminarProveedores eliminar = new EliminarProveedores(this.prov.get(fila_seleccionada),mod);
+            eliminar.setVisible(true);
+            eliminar.setLocationRelativeTo(null);
         }else{
             JOptionPane.showMessageDialog(this, "Por favor seleccione una fila.");
         }

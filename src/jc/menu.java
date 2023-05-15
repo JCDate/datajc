@@ -5,12 +5,8 @@
  */
 package jc;
 
-import AlmacenInspeccion.InspeccionGUI;
-import AntecedentesFamilia.AntecedentesFamiliaGUI;
-import CRs.CRsGUI;
 import Calculo.CalculoGUI;
 import OrdenesSolicitadas.OrdenesSolicitadasGUI;
-import ConsumoYAntecedentes.ConsumoyAntecedentesGUI;
 import DefectoInspeccion.DefInsGUI;
 import Dimensiones.DimensionesGUI;
 import Embarque.EmbarqueGUI;
@@ -20,14 +16,11 @@ import InstPPTroqueldo.InstPPTroqueladoGUI;
 import MateriaPrima.MateriaPirmaGUI;
 import Modelos.Usuarios;
 import OrdenCompra.OrdenCompraGUI;
-import PrecioComponente.PrecoComponenteGUI;
 import RepDiarioProd.RepDiarioProdGUI;
 import SIM_CURRENT.SIM_CURRENTGUI;
 import TallerMecanico.TallerMecanicoGUI;
 import TiemposYRecursos.TiemposYRecursosGUI;
 import Troqueladores.TroqueladoresGUI;
-import Troqueles.troqueles;
-import UbicacionTroqueles.UbicacionTroquel;
 import Ventas.VentasGUI;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -40,14 +33,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
 public class menu extends javax.swing.JFrame {
 
     Usuarios mod;
-
     public menu() {
         initComponents(); 
-        
         this.setResizable(false);
         this.setDefaultCloseOperation(0);   
     }
@@ -60,80 +50,83 @@ public class menu extends javax.swing.JFrame {
         this.setDefaultCloseOperation(0);
        
         //REPORTES
-        jButton26.setVisible(false);
-        jButton27.setVisible(false);
-        jButton28.setVisible(false);
+        btnRepProduccion.setVisible(false);
+        btnIIPTroqueles.setVisible(false);
+        btnTallerMecanico.setVisible(false);
         
-        if(mod.getId_tipo()== 1)
-        {
-            jButton12.setEnabled(true);
-            jButton13.setEnabled(true);
-            jButton2.setEnabled(true);
-            jButton1.setEnabled(true);
-            jButton5.setEnabled(true);
-            jButton6.setEnabled(true);
-            jButton14.setEnabled(true);
-            jButton7.setEnabled(true);
-            jButton8.setEnabled(true);
-            jButton11.setEnabled(true);
-            jButton15.setEnabled(true);
-            jButton3.setEnabled(true);
-            jButton21.setEnabled(true);
-            jButton19.setEnabled(true);
-            jButton20.setEnabled(true);
-            jButton10.setEnabled(true);
-            
-        }else if(mod.getId_tipo()== 2)
-        {
-            jButton12.setEnabled(true);
-            jButton13.setEnabled(true);
-            jButton2.setEnabled(true);
-            jButton1.setEnabled(true);
-            jButton5.setEnabled(true);
-            jButton6.setEnabled(true);
-            jButton14.setEnabled(true);
-            jButton7.setEnabled(true);
-            jButton8.setEnabled(true);
-            jButton11.setEnabled(true);
-            jButton15.setEnabled(true);
-            jButton3.setEnabled(true);
-            jButton21.setEnabled(true);
-            jButton19.setEnabled(true);
-            jButton20.setEnabled(true);
-            jButton10.setEnabled(true);
-     
-        }else if(mod.getId_tipo()== 3){
-            jButton12.setEnabled(false);
-            jButton13.setEnabled(false);
-            jButton2.setEnabled(false);
-            jButton1.setEnabled(false);
-            jButton5.setEnabled(false);
-            jButton6.setEnabled(false);
-            jButton14.setEnabled(false);
-            jButton7.setEnabled(false);
-            jButton8.setEnabled(false);
-            jButton11.setEnabled(false);
-            jButton15.setEnabled(false);
-            jButton18.setEnabled(false);
-            jButton19.setEnabled(false);
-            jButton20.setEnabled(true);
-            jButton17.setEnabled(false);
-            jButton10.setEnabled(false);
-        }else if(mod.getId_tipo()== 4){
-            jButton12.setEnabled(true);
-            jButton13.setEnabled(true);
-            jButton2.setEnabled(true);
-            jButton1.setEnabled(true);
-            jButton5.setEnabled(true);
-            jButton6.setEnabled(false);
-            jButton14.setEnabled(true);
-            jButton7.setEnabled(true);
-            jButton8.setEnabled(false);
-            jButton11.setEnabled(true);
-            jButton15.setEnabled(true);
-            jButton3.setEnabled(false);
-            jButton10.setEnabled(false);
-        } 
+        switch (mod.getId_tipo()) {
+            case 1:
+                btnAntecedentesFamilia.setEnabled(true);
+                btnCRs.setEnabled(true);
+                btnUbicacionTroqueles.setEnabled(true);
+                btnTroqueles.setEnabled(true);
+                btnEstructura.setEnabled(true);
+                btnOrdenCompra.setEnabled(true);
+                btnCalculo.setEnabled(true);
+                btnTiemposRecursos.setEnabled(true);
+                btnSimCurrent.setEnabled(true);
+                btnOrdenesSolicitadas.setEnabled(true);
+                btnEntregados.setEnabled(true);
+                btnMateriaPrima.setEnabled(true);
+                btnPrecioComponente.setEnabled(true);
+                btnDimensiones.setEnabled(true);
+                btnEmbarque.setEnabled(true);
+                btnVentas.setEnabled(true);
+                break;
+            case 2:
+                btnAntecedentesFamilia.setEnabled(true);
+                btnCRs.setEnabled(true);
+                btnUbicacionTroqueles.setEnabled(true);
+                btnTroqueles.setEnabled(true);
+                btnEstructura.setEnabled(true);
+                btnOrdenCompra.setEnabled(true);
+                btnCalculo.setEnabled(true);
+                btnTiemposRecursos.setEnabled(true);
+                btnSimCurrent.setEnabled(true);
+                btnOrdenesSolicitadas.setEnabled(true);
+                btnEntregados.setEnabled(true);
+                btnMateriaPrima.setEnabled(true);
+                btnPrecioComponente.setEnabled(true);
+                btnDimensiones.setEnabled(true);
+                btnEmbarque.setEnabled(true);
+                btnVentas.setEnabled(true);
+                break;
+            case 3:
+                btnAntecedentesFamilia.setEnabled(false);
+                btnCRs.setEnabled(false);
+                btnUbicacionTroqueles.setEnabled(false);
+                btnTroqueles.setEnabled(false);
+                btnEstructura.setEnabled(false);
+                btnOrdenCompra.setEnabled(false);
+                btnCalculo.setEnabled(false);
+                btnTiemposRecursos.setEnabled(false);
+                btnSimCurrent.setEnabled(false);
+                btnOrdenesSolicitadas.setEnabled(false);
+                btnEntregados.setEnabled(false);
+                btnTrabajadores.setEnabled(false);
+                btnDimensiones.setEnabled(false);
+                btnEmbarque.setEnabled(true);
+                btnReportes.setEnabled(false);
+                btnVentas.setEnabled(false);
+                break;
+            case 4:
+                btnAntecedentesFamilia.setEnabled(true);
+                btnCRs.setEnabled(true);
+                btnUbicacionTroqueles.setEnabled(true);
+                btnTroqueles.setEnabled(true);
+                btnEstructura.setEnabled(true);
+                btnOrdenCompra.setEnabled(true);
+                btnCalculo.setEnabled(true);
+                btnTiemposRecursos.setEnabled(true);
+                btnSimCurrent.setEnabled(true);
+                btnOrdenesSolicitadas.setEnabled(true);
+                btnEntregados.setEnabled(true);
+                btnMateriaPrima.setEnabled(true);
+                btnVentas.setEnabled(true);
+                break; 
+            default:
+                break;
+        }
     }
    
     
@@ -188,359 +181,298 @@ public class menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton26 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton22 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        btnRepProduccion = new javax.swing.JButton();
+        btnIIPTroqueles = new javax.swing.JButton();
+        btnTallerMecanico = new javax.swing.JButton();
+        btnTroqueles = new javax.swing.JButton();
+        btnDimensiones = new javax.swing.JButton();
+        btnUbicacionTroqueles = new javax.swing.JButton();
+        btnMateriaPrima = new javax.swing.JButton();
+        btnEstructura = new javax.swing.JButton();
+        btnOrdenCompra = new javax.swing.JButton();
+        btnTiemposRecursos = new javax.swing.JButton();
+        btnSimCurrent = new javax.swing.JButton();
+        btnTrabajadores = new javax.swing.JButton();
+        btnOrdenesSolicitadas = new javax.swing.JButton();
+        btnAntecedentesFamilia = new javax.swing.JButton();
+        btnCRs = new javax.swing.JButton();
+        btnCalculo = new javax.swing.JButton();
+        btnEntregados = new javax.swing.JButton();
+        btnEmbarque = new javax.swing.JButton();
+        btnPrecioComponente = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
+        btnVentas = new javax.swing.JButton();
+        btnConsumoAntecedentes = new javax.swing.JButton();
+        btnEntSalAlmacen = new javax.swing.JButton();
+        btnDefectosInspeccion = new javax.swing.JButton();
+        lblIconoJC = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton26.setText("REP. PRODUCCIÓN");
-        jButton26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton26ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, 150, 30));
-
-        jButton27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton27.setText("I. P. P. TROQUELES");
-        jButton27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton27ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, 150, -1));
-
-        jButton28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton28.setText("TALLER MECANICO");
-        jButton28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton28ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 690, 150, -1));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton1.setText("TROQUELES");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 300, 30));
-
-        jButton19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton19.setText("DIMENSIONES");
-        jButton19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 300, 30));
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton2.setText("UBICACIÓN DE LOS TROQUELES ");
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 300, 30));
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton3.setText("MATERIA PRIMA  ");
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 300, 30));
-
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton5.setText("ESTRUCTURA ");
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 300, 30));
-
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton6.setText("ORDEN DE COMPRA  ");
-        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 300, 30));
-
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton7.setText("TIEMPOS Y RECURSOS  ");
-        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 300, 30));
-
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton8.setText("SIM CURRENT ");
-        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 300, 30));
-
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Logout_37127 (2).png"))); // NOI18N
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
-
-        jButton18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton18.setText("TRABAJADORES");
-        jButton18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 300, 30));
-
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton11.setText("ORDENES SOLICITADAS");
-        jButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 300, 30));
-
-        jButton12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton12.setText("ANTECEDENTES POR FAMILIA");
-        jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 300, 30));
-
-        jButton13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton13.setText("C/Rs");
-        jButton13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 300, 30));
-
-        jButton14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton14.setText("CALCULO");
-        jButton14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 300, 30));
-
-        jButton15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton15.setText("ENTREGADOS");
-        jButton15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 720, 300, 30));
-
-        jButton20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton20.setText("EMBARQUE");
-        jButton20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 660, 300, 30));
-
-        jButton21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton21.setText("PRECIO COMPONENTE");
-        jButton21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 300, 30));
-
-        jButton17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton17.setText("REPORTES");
-        jButton17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 300, 30));
-
-        jButton10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton10.setText("VENTAS");
-        jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, 300, 30));
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton4.setText("CONSUMO Y ANTECEDENTES ");
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 300, 30));
-
-        jButton16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton16.setText("ENT. Y SAL. ALMACEN (INSP.)");
-        jButton16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton16MouseClicked(evt);
-            }
-        });
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 300, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
-
-        jButton22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton22.setText("DEFECTOS INSPECCIÓN");
-        jButton22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton22MouseClicked(evt);
-            }
-        });
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 300, 30));
-
         jPanel1.setBackground(new java.awt.Color(59, 153, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(2147483647, 2147483647));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(340, 700));
+
+        jPanel2.setMinimumSize(new java.awt.Dimension(340, 700));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnRepProduccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnRepProduccion.setText("REP. PRODUCCIÓN");
+        btnRepProduccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRepProduccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRepProduccionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRepProduccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, 150, 30));
+
+        btnIIPTroqueles.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnIIPTroqueles.setText("I. P. P. TROQUELES");
+        btnIIPTroqueles.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnIIPTroqueles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIIPTroquelesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnIIPTroqueles, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 660, 150, -1));
+
+        btnTallerMecanico.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnTallerMecanico.setText("TALLER MECANICO");
+        btnTallerMecanico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnTallerMecanico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTallerMecanicoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnTallerMecanico, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 690, 150, -1));
+
+        btnTroqueles.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnTroqueles.setText("TROQUELES");
+        btnTroqueles.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(btnTroqueles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 300, 30));
+
+        btnDimensiones.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnDimensiones.setText("DIMENSIONES");
+        btnDimensiones.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDimensiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDimensionesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnDimensiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 300, 30));
+
+        btnUbicacionTroqueles.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnUbicacionTroqueles.setText("UBICACIÓN DE LOS TROQUELES ");
+        btnUbicacionTroqueles.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(btnUbicacionTroqueles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 300, 30));
+
+        btnMateriaPrima.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnMateriaPrima.setText("MATERIA PRIMA  ");
+        btnMateriaPrima.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnMateriaPrima.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMateriaPrimaMouseClicked(evt);
+            }
+        });
+        btnMateriaPrima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMateriaPrimaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnMateriaPrima, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 300, 30));
+
+        btnEstructura.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnEstructura.setText("ESTRUCTURA ");
+        btnEstructura.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEstructura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstructuraActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEstructura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 300, 30));
+
+        btnOrdenCompra.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnOrdenCompra.setText("ORDEN DE COMPRA  ");
+        btnOrdenCompra.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenCompraActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnOrdenCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 300, 30));
+
+        btnTiemposRecursos.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnTiemposRecursos.setText("TIEMPOS Y RECURSOS  ");
+        btnTiemposRecursos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnTiemposRecursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTiemposRecursosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnTiemposRecursos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 300, 30));
+
+        btnSimCurrent.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnSimCurrent.setText("SIM CURRENT ");
+        btnSimCurrent.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSimCurrent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimCurrentActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSimCurrent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 300, 30));
+
+        btnTrabajadores.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnTrabajadores.setText("TRABAJADORES");
+        btnTrabajadores.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnTrabajadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrabajadoresActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnTrabajadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 300, 30));
+
+        btnOrdenesSolicitadas.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnOrdenesSolicitadas.setText("ORDENES SOLICITADAS");
+        btnOrdenesSolicitadas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnOrdenesSolicitadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenesSolicitadasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnOrdenesSolicitadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 300, 30));
+
+        btnAntecedentesFamilia.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnAntecedentesFamilia.setText("ANTECEDENTES POR FAMILIA");
+        btnAntecedentesFamilia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(btnAntecedentesFamilia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 300, 30));
+
+        btnCRs.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnCRs.setText("C/Rs");
+        btnCRs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(btnCRs, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 300, 30));
+
+        btnCalculo.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnCalculo.setText("CALCULO");
+        btnCalculo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCalculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCalculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 300, 30));
+
+        btnEntregados.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnEntregados.setText("ENTREGADOS");
+        btnEntregados.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEntregados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntregadosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEntregados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 720, 300, 30));
+
+        btnEmbarque.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnEmbarque.setText("EMBARQUE");
+        btnEmbarque.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEmbarque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmbarqueActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnEmbarque, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 660, 300, 30));
+
+        btnPrecioComponente.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnPrecioComponente.setText("PRECIO COMPONENTE");
+        btnPrecioComponente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(btnPrecioComponente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 300, 30));
+
+        btnReportes.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnReportes.setText("REPORTES");
+        btnReportes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, 300, 30));
+
+        btnVentas.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnVentas.setText("VENTAS");
+        btnVentas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, 300, 30));
+
+        btnConsumoAntecedentes.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnConsumoAntecedentes.setText("CONSUMO Y ANTECEDENTES ");
+        btnConsumoAntecedentes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(btnConsumoAntecedentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 300, 30));
+
+        btnEntSalAlmacen.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnEntSalAlmacen.setText("ENT. Y SAL. ALMACEN (INSP.)");
+        btnEntSalAlmacen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel2.add(btnEntSalAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 300, -1));
+
+        btnDefectosInspeccion.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnDefectosInspeccion.setText("DEFECTOS INSPECCIÓN");
+        btnDefectosInspeccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDefectosInspeccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDefectosInspeccionMouseClicked(evt);
+            }
+        });
+        btnDefectosInspeccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDefectosInspeccionActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnDefectosInspeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 570, 300, 30));
+
+        lblIconoJC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
+        jPanel2.add(lblIconoJC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Logout_37127 (2).png"))); // NOI18N
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
+
+        jScrollPane1.setViewportView(jPanel2);
+
+        jPanel1.add(jScrollPane1);
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-            
-            troqueles tro= new troqueles(mod);
-            tro.setVisible(true);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         JC jc= new JC();
         jc.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            
-             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-        
-            UbicacionTroquel ubT= new UbicacionTroquel(mod);
-            ubT.setVisible(true);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnEstructuraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstructuraActionPerformed
         try {
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             EstructuraGUI estruc= new EstructuraGUI(mod);
             estruc.setVisible(true);
@@ -549,26 +481,26 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnEstructuraActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenCompraActionPerformed
         
          //REPORTES
-        jButton26.setVisible(false);
-        jButton27.setVisible(false);
-        jButton28.setVisible(false);
+        btnRepProduccion.setVisible(false);
+        btnIIPTroqueles.setVisible(false);
+        btnTallerMecanico.setVisible(false);
         
         OrdenCompraGUI ordencompra= new OrdenCompraGUI(mod);
         ordencompra.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnOrdenCompraActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriaPrimaActionPerformed
         try {
             
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             MateriaPirmaGUI materiaprima= new MateriaPirmaGUI(mod);
             materiaprima.setVisible(true);
@@ -578,14 +510,14 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnMateriaPrimaActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnSimCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimCurrentActionPerformed
         try {
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             SIM_CURRENTGUI sim_current = new SIM_CURRENTGUI(mod);
              sim_current.setVisible(true);
@@ -594,15 +526,15 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnSimCurrentActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void btnOrdenesSolicitadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenesSolicitadasActionPerformed
         try {
 
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             OrdenesSolicitadasGUI analisisatrasos = new OrdenesSolicitadasGUI(mod);
             analisisatrasos.setVisible(true);
@@ -612,15 +544,15 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_btnOrdenesSolicitadasActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnTiemposRecursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiemposRecursosActionPerformed
         try {
             
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             TiemposYRecursosGUI tiemposyrecursos = new TiemposYRecursosGUI(mod);
             tiemposyrecursos.setVisible(true);
@@ -629,80 +561,25 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnTiemposRecursosActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        try {
-             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-            
-            AntecedentesFamiliaGUI antFam = new AntecedentesFamiliaGUI(mod);
-            antFam.setVisible(true);
-
-            /*PanelPrincipal.removeAll();
-            PanelPrincipal.add(antFam, BorderLayout.CENTER);
-            PanelPrincipal.revalidate();
-            PanelPrincipal.repaint();*/
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        try {
-             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-            
-            CRsGUI crs = new CRsGUI(mod);
-            crs.setVisible(true);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void btnCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoActionPerformed
 
          //REPORTES
-        jButton26.setVisible(false);
-        jButton27.setVisible(false);
-        jButton28.setVisible(false);
+        btnRepProduccion.setVisible(false);
+        btnIIPTroqueles.setVisible(false);
+        btnTallerMecanico.setVisible(false);
         
         CalculoGUI calculo = new CalculoGUI(mod);
         calculo.setVisible(true);
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_btnCalculoActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void btnTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajadoresActionPerformed
         try {
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-        
-            EntregadosGUI entregados = new EntregadosGUI(mod);
-            entregados.setVisible(true);
- 
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        try {
-             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             TroqueladoresGUI troqueladores = new TroqueladoresGUI(mod);
              troqueladores.setVisible(true);
@@ -712,14 +589,14 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_btnTrabajadoresActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void btnDimensionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDimensionesActionPerformed
         try {
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
             
             DimensionesGUI dim = new DimensionesGUI(mod);
             dim.setVisible(true);
@@ -728,14 +605,14 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_btnDimensionesActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void btnEmbarqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmbarqueActionPerformed
         try {
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             EmbarqueGUI em= new EmbarqueGUI(mod);
             em.setVisible(true);
@@ -746,38 +623,21 @@ public class menu extends javax.swing.JFrame {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_btnEmbarqueActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        try {
-             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-        
-           PrecoComponenteGUI preCom = new PrecoComponenteGUI(mod);
-           preCom.setVisible(true);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton21ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
          //REPORTES
-        jButton26.setVisible(true);
-        jButton27.setVisible(true);
-        jButton28.setVisible(true);
-    }//GEN-LAST:event_jButton17ActionPerformed
+        btnRepProduccion.setVisible(true);
+        btnIIPTroqueles.setVisible(true);
+        btnTallerMecanico.setVisible(true);
+    }//GEN-LAST:event_btnReportesActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         try {
              //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
         
             VentasGUI ven= new VentasGUI(mod);
             ven.setVisible(true);
@@ -787,33 +647,16 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnMateriaPrimaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMateriaPrimaMouseClicked
+    }//GEN-LAST:event_btnMateriaPrimaMouseClicked
+
+    private void btnTallerMecanicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTallerMecanicoActionPerformed
         try {
-             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-        
-            ConsumoyAntecedentesGUI cons= new ConsumoyAntecedentesGUI(mod);
-            cons.setVisible(true);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-    }//GEN-LAST:event_jButton3MouseClicked
-
-    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        try {
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
 
             TallerMecanicoGUI taller= new TallerMecanicoGUI(mod);
             taller.setVisible(true);
@@ -822,13 +665,13 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton28ActionPerformed
+    }//GEN-LAST:event_btnTallerMecanicoActionPerformed
 
-    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+    private void btnIIPTroquelesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIIPTroquelesActionPerformed
         try {
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
 
             InstPPTroqueladoGUI inst= new InstPPTroqueladoGUI(mod);
             inst.setVisible(true);
@@ -838,14 +681,14 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton27ActionPerformed
+    }//GEN-LAST:event_btnIIPTroquelesActionPerformed
 
-    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+    private void btnRepProduccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepProduccionActionPerformed
         try {
             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
 
             RepDiarioProdGUI rep= new RepDiarioProdGUI(mod);
             rep.setVisible(true);
@@ -855,38 +698,18 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton26ActionPerformed
+    }//GEN-LAST:event_btnRepProduccionActionPerformed
 
-    private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
+    private void btnDefectosInspeccionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDefectosInspeccionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16MouseClicked
+    }//GEN-LAST:event_btnDefectosInspeccionMouseClicked
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void btnDefectosInspeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefectosInspeccionActionPerformed
         try {
             //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
-            
-            InspeccionGUI ins= new InspeccionGUI(mod);
-            ins.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton22MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22MouseClicked
-
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        try {
-            //REPORTES
-            jButton26.setVisible(false);
-            jButton27.setVisible(false);
-            jButton28.setVisible(false);
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);
 
             DefInsGUI def= new DefInsGUI(mod);
             def.setVisible(true);
@@ -895,7 +718,25 @@ public class menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton22ActionPerformed
+    }//GEN-LAST:event_btnDefectosInspeccionActionPerformed
+
+    private void btnEntregadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntregadosActionPerformed
+        try {
+             //REPORTES
+            btnRepProduccion.setVisible(false);
+            btnIIPTroqueles.setVisible(false);
+            btnTallerMecanico.setVisible(false);;
+        
+            EntregadosGUI entregados = new EntregadosGUI(mod);
+            entregados.setVisible(true);
+ 
+        } catch (SQLException ex) {
+            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    //GEN-LAST
+    }//GEN-LAST:event_btnEntregadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -933,32 +774,34 @@ public class menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnAntecedentesFamilia;
+    private javax.swing.JButton btnCRs;
+    private javax.swing.JButton btnCalculo;
+    private javax.swing.JButton btnConsumoAntecedentes;
+    private javax.swing.JButton btnDefectosInspeccion;
+    private javax.swing.JButton btnDimensiones;
+    private javax.swing.JButton btnEmbarque;
+    private javax.swing.JButton btnEntSalAlmacen;
+    private javax.swing.JButton btnEntregados;
+    private javax.swing.JButton btnEstructura;
+    private javax.swing.JButton btnIIPTroqueles;
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnMateriaPrima;
+    private javax.swing.JButton btnOrdenCompra;
+    private javax.swing.JButton btnOrdenesSolicitadas;
+    private javax.swing.JButton btnPrecioComponente;
+    private javax.swing.JButton btnRepProduccion;
+    private javax.swing.JButton btnReportes;
+    private javax.swing.JButton btnSimCurrent;
+    private javax.swing.JButton btnTallerMecanico;
+    private javax.swing.JButton btnTiemposRecursos;
+    private javax.swing.JButton btnTrabajadores;
+    private javax.swing.JButton btnTroqueles;
+    private javax.swing.JButton btnUbicacionTroqueles;
+    private javax.swing.JButton btnVentas;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblIconoJC;
     // End of variables declaration//GEN-END:variables
 }

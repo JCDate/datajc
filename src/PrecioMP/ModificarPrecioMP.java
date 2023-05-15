@@ -12,12 +12,13 @@ import Servicios.PrecioMP_servicio;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
-
 public class ModificarPrecioMP extends javax.swing.JFrame {
+
     private final PrecioMP_servicio precioMP_servicio = new PrecioMP_servicio();
-    private final PrecioMP precio;
+    private final PrecioMP precio, precio2;
     Usuarios mod;
 
     public ModificarPrecioMP() {
@@ -25,23 +26,27 @@ public class ModificarPrecioMP extends javax.swing.JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(0);
         this.precio = new PrecioMP();
-        
+        this.precio2 = new PrecioMP();
+
     }
-    public ModificarPrecioMP(PrecioMP p_precio, Usuarios mod){
+
+    public ModificarPrecioMP(PrecioMP p_precio, Usuarios mod) {
         initComponents();
         this.setResizable(false);
         this.setDefaultCloseOperation(0);
-        this.mod=mod;
+        this.mod = mod;
         this.precio = p_precio;
-
-        jTextField1.setText(this.precio.getCalibre());
-        jTextField2.setText(Float. toString(this.precio.getPesoUnitario()));
-        jTextField3.setText(this.precio.getMoneda());
+        this.precio2 = this.precio;
+        
+        txtCalibre.setText(this.precio.getCalibre());
+        txtPU.setText(Float.toString(this.precio.getPesoUnitario()));
+        txtMoneda.setText(this.precio.getMoneda());
     }
-     @Override
+
+    @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
-              getImage(ClassLoader.getSystemResource("jc/img/jc.png"));
+                getImage(ClassLoader.getSystemResource("jc/img/jc.png"));
 
         return retValue;
     }
@@ -55,80 +60,80 @@ public class ModificarPrecioMP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblCalibre = new javax.swing.JLabel();
+        txtCalibre = new javax.swing.JTextField();
+        lblPU = new javax.swing.JLabel();
+        txtPU = new javax.swing.JTextField();
+        btnGuardarPrecio = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblModificar = new javax.swing.JLabel();
+        lblPrecioMP = new javax.swing.JLabel();
+        lblMoneda = new javax.swing.JLabel();
+        txtMoneda = new javax.swing.JTextField();
+        lblJCIcono = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("CALIBRE:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        lblCalibre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCalibre.setText("CALIBRE:");
+        getContentPane().add(lblCalibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.setEnabled(false);
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCalibre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCalibre.setEnabled(false);
+        txtCalibre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtCalibreKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 190, -1));
+        getContentPane().add(txtCalibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 190, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("P. U. (KG):");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+        lblPU.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPU.setText("P. U. (KG):");
+        getContentPane().add(lblPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 190, -1));
+        txtPU.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 190, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Guardar.png"))); // NOI18N
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarPrecio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGuardarPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Guardar.png"))); // NOI18N
+        btnGuardarPrecio.setText("GUARDAR");
+        btnGuardarPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarPrecioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 130, -1));
+        getContentPane().add(btnGuardarPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 130, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
-        jButton2.setText("CANCELAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
-        jLabel6.setText("MODIFICAR");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 250, 50));
+        lblModificar.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
+        lblModificar.setText("MODIFICAR");
+        getContentPane().add(lblModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 250, 50));
 
-        jLabel7.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
-        jLabel7.setText("PRECIO M. P.");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 250, 40));
+        lblPrecioMP.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
+        lblPrecioMP.setText("PRECIO M. P.");
+        getContentPane().add(lblPrecioMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 250, 40));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("MONEDA:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+        lblMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblMoneda.setText("MONEDA:");
+        getContentPane().add(lblMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 190, -1));
+        txtMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 190, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblJCIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
+        getContentPane().add(lblJCIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(135, 206, 235));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 380));
@@ -136,44 +141,45 @@ public class ModificarPrecioMP extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String calibre = jTextField1.getText();
-        String precioUni = jTextField2.getText();
-        String moneda = jTextField3.getText();
-        if(!calibre.trim().equals("")){        
-            float f=Float.parseFloat(precioUni);
+    private void btnGuardarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPrecioActionPerformed
+        String calibre = txtCalibre.getText();
+        String precioUni = txtPU.getText();
+        String moneda = txtMoneda.getText();
+        if (!calibre.trim().equals("")) {
+            
+            float f = Float.parseFloat(precioUni);
             this.precio.setCalibre(calibre);
             this.precio.setPesoUnitario(f);
             this.precio.setMoneda(moneda);
 
-            try{
-                this.precioMP_servicio.modificar(Conexion.obtener(), this.precio);
+            try {
+                this.precioMP_servicio.modificar(Conexion.obtener(), this.precio, this.precio2);
                 JOptionPane.showMessageDialog(this, "DATOS GUARDADOS.");
                 ModificarPrecioMP.this.dispose();
                 PrecioMPGUI pmp = new PrecioMPGUI(mod);
                 pmp.setVisible(true);
                 pmp.setLocationRelativeTo(null);
-            }catch(SQLException ex){
+            } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
                 JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido guardar el registro.");
-            }catch(ClassNotFoundException ex){
+            } catch (ClassNotFoundException ex) {
                 System.out.println(ex);
                 JOptionPane.showMessageDialog(this, "Ha surgido un error y no se ha podido guardar el registro.");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "HAY CAMPOS INCOMPLETOS.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGuardarPrecioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         ModificarPrecioMP.this.dispose();
         PrecioMPGUI pmp = new PrecioMPGUI(mod);
         pmp.setVisible(true);
         pmp.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-    }//GEN-LAST:event_jTextField1KeyTyped
+    private void txtCalibreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCalibreKeyTyped
+    }//GEN-LAST:event_txtCalibreKeyTyped
 
     /**
      * @param args the command line arguments
@@ -213,17 +219,17 @@ public class ModificarPrecioMP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardarPrecio;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblCalibre;
+    private javax.swing.JLabel lblJCIcono;
+    private javax.swing.JLabel lblModificar;
+    private javax.swing.JLabel lblMoneda;
+    private javax.swing.JLabel lblPU;
+    private javax.swing.JLabel lblPrecioMP;
+    private javax.swing.JTextField txtCalibre;
+    private javax.swing.JTextField txtMoneda;
+    private javax.swing.JTextField txtPU;
     // End of variables declaration//GEN-END:variables
 }

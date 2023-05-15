@@ -27,7 +27,7 @@ public class JC extends javax.swing.JFrame {
 
     public JC() {
         initComponents();        
-        this.setResizable(false);
+        this.setResizable(true);
         txtUsuario.setBackground(Color.lightGray);
         txtContraseña.setBackground(Color.lightGray);
         LineBorder lineBorder =new LineBorder(Color.white, 4, true);
@@ -53,7 +53,7 @@ public class JC extends javax.swing.JFrame {
     private void initComponents() {
 
         txtUsuario = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        lblIconoUsuario = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -71,8 +71,8 @@ public class JC extends javax.swing.JFrame {
         txtUsuario.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 270, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/usuario (2).png"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 30, -1));
+        lblIconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/usuario (2).png"))); // NOI18N
+        getContentPane().add(lblIconoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 30, -1));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -142,7 +142,7 @@ public class JC extends javax.swing.JFrame {
         DateFormat fechaHora= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         
         String pass=new String(txtContraseña.getPassword());
-        
+       
         if(!txtUsuario.getText().equals("") && !pass.equals("")){
             try {
                 String nuevoPass = Hash.sha1(pass);
@@ -218,10 +218,10 @@ public class JC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblIconoUsuario;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

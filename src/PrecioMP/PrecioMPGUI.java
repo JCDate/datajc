@@ -34,14 +34,14 @@ public class PrecioMPGUI extends javax.swing.JFrame {
         this.PrecioMPGUI();  
         
         //Boton Exportar Precio MP
-        jButton4.setFocusPainted(false);
-        jButton4.setBorderPainted(false);
+        btnExportarExcel.setFocusPainted(false);
+        btnExportarExcel.setBorderPainted(false);
         //jButton4.setContentAreaFilled(false);
         
         //Boton Regresar
-        jButton3.setFocusPainted(false);
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
+        btnRegresarPrecioMP.setFocusPainted(false);
+        btnRegresarPrecioMP.setBorderPainted(false);
+        btnRegresarPrecioMP.setContentAreaFilled(false);
     }
     public PrecioMPGUI(Usuarios mod){
         initComponents();
@@ -51,25 +51,25 @@ public class PrecioMPGUI extends javax.swing.JFrame {
         this.PrecioMPGUI();
         
         //Boton Exportar Precio MP
-        jButton4.setFocusPainted(false);
-        jButton4.setBorderPainted(false);
+        btnExportarExcel.setFocusPainted(false);
+        btnExportarExcel.setBorderPainted(false);
         //jButton4.setContentAreaFilled(false);
         
         //Boton Regresar
-        jButton3.setFocusPainted(false);
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
+        btnRegresarPrecioMP.setFocusPainted(false);
+        btnRegresarPrecioMP.setBorderPainted(false);
+        btnRegresarPrecioMP.setContentAreaFilled(false);
         
         if(mod.getId_tipo()== 4){
-            jButton2.setEnabled(false);
-            jButton1.setEnabled(false);           
+            btnModificarPrecioMP.setEnabled(true);
+            btnAgregarPrecioMP.setEnabled(true);           
         }  
     } 
      
     private void PrecioMPGUI() {
         try{
             this.precio = this.precioMP_servicio.recuperarTodas(Conexion.obtener());
-            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            DefaultTableModel dtm = (DefaultTableModel) tblPrecioMP.getModel();
             dtm.setRowCount(0);
             for(int i = 0; i < this.precio.size(); i++){
                 dtm.addRow(new Object[]{
@@ -104,55 +104,55 @@ public class PrecioMPGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        lblPrecioMP = new javax.swing.JLabel();
+        btnAgregarPrecioMP = new javax.swing.JButton();
+        btnModificarPrecioMP = new javax.swing.JButton();
+        btnRegresarPrecioMP = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        tblPrecioMP = new javax.swing.JTable();
+        btnExportarExcel = new javax.swing.JButton();
+        lblExportar = new javax.swing.JLabel();
+        lblJCIcono = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Wide Latin", 1, 24)); // NOI18N
-        jLabel2.setText("PRECIO M. P.");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 370, 50));
+        lblPrecioMP.setFont(new java.awt.Font("Wide Latin", 1, 24)); // NOI18N
+        lblPrecioMP.setText("PRECIO M. P.");
+        getContentPane().add(lblPrecioMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 370, 50));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/1004733.png"))); // NOI18N
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarPrecioMP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAgregarPrecioMP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/1004733.png"))); // NOI18N
+        btnAgregarPrecioMP.setText("Agregar");
+        btnAgregarPrecioMP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarPrecioMPActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 130, 30));
+        getContentPane().add(btnAgregarPrecioMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 130, 30));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
-        jButton2.setText("Modificar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnModificarPrecioMP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarPrecioMP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
+        btnModificarPrecioMP.setText("Modificar");
+        btnModificarPrecioMP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnModificarPrecioMPActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 30));
+        getContentPane().add(btnModificarPrecioMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 30));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/boton_regresar.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresarPrecioMP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnRegresarPrecioMP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/boton_regresar.png"))); // NOI18N
+        btnRegresarPrecioMP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRegresarPrecioMPActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 120, 50));
+        getContentPane().add(btnRegresarPrecioMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 120, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPrecioMP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -179,23 +179,23 @@ public class PrecioMPGUI extends javax.swing.JFrame {
                 "CALIBRE", "P. U. (KG)", "MONEDA"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblPrecioMP);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 540, 370));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/excel.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnExportarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/excel.png"))); // NOI18N
+        btnExportarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnExportarExcelActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 60, 60));
+        getContentPane().add(btnExportarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 60, 60));
 
-        jLabel3.setText("EXPORTAR");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, -1, -1));
+        lblExportar.setText("EXPORTAR");
+        getContentPane().add(lblExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblJCIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
+        getContentPane().add(lblJCIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(135, 206, 235));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 490));
@@ -203,8 +203,8 @@ public class PrecioMPGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int fila_seleccionada = jTable1.getSelectedRow();
+    private void btnModificarPrecioMPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPrecioMPActionPerformed
+        int fila_seleccionada = tblPrecioMP.getSelectedRow();
          
         if(fila_seleccionada >= 0){
             PrecioMPGUI.this.dispose();
@@ -214,10 +214,10 @@ public class PrecioMPGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Por favor seleccione una fila.");
         }           
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnModificarPrecioMPActionPerformed
 
            
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnRegresarPrecioMPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarPrecioMPActionPerformed
       
         try {
             MateriaPirmaGUI mn= new MateriaPirmaGUI(mod);
@@ -229,19 +229,19 @@ public class PrecioMPGUI extends javax.swing.JFrame {
             Logger.getLogger(PrecioMPGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnRegresarPrecioMPActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAgregarPrecioMPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPrecioMPActionPerformed
         PrecioMPGUI.this.dispose();
         AgregarPrecioMP vista = new AgregarPrecioMP(mod);
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAgregarPrecioMPActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarExcelActionPerformed
         excel.WriteExcelPrecioMP();
         JOptionPane.showMessageDialog(this, "Datos Exportados.");
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnExportarExcelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,16 +283,16 @@ public class PrecioMPGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton btnAgregarPrecioMP;
+    private javax.swing.JButton btnExportarExcel;
+    private javax.swing.JButton btnModificarPrecioMP;
+    private javax.swing.JButton btnRegresarPrecioMP;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblExportar;
+    private javax.swing.JLabel lblJCIcono;
+    private javax.swing.JLabel lblPrecioMP;
+    private javax.swing.JTable tblPrecioMP;
     // End of variables declaration//GEN-END:variables
 
 }

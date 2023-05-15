@@ -49,79 +49,79 @@ public class AgregarPrecioMP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblCalibre = new javax.swing.JLabel();
+        txtCalibre = new javax.swing.JTextField();
+        lblPU = new javax.swing.JLabel();
+        txtPU = new javax.swing.JTextField();
+        btnGuardarPrecio = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblAgregar = new javax.swing.JLabel();
+        lblPrecioMP = new javax.swing.JLabel();
+        lblMoneda = new javax.swing.JLabel();
+        txtMoneda = new javax.swing.JTextField();
+        lblJCIcono = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("CALIBRE:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        lblCalibre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCalibre.setText("CALIBRE:");
+        getContentPane().add(lblCalibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCalibre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCalibre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtCalibreKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 190, -1));
+        getContentPane().add(txtCalibre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 190, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("P. U. (KG):");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        lblPU.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPU.setText("P. U. (KG):");
+        getContentPane().add(lblPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 190, -1));
+        txtPU.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 190, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Guardar.png"))); // NOI18N
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarPrecio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGuardarPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Guardar.png"))); // NOI18N
+        btnGuardarPrecio.setText("GUARDAR");
+        btnGuardarPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarPrecioActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 140, -1));
+        getContentPane().add(btnGuardarPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 140, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
-        jButton2.setText("CANCELAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
+        btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
-        jLabel6.setText("AGREGAR");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 250, 50));
+        lblAgregar.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
+        lblAgregar.setText("AGREGAR");
+        getContentPane().add(lblAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 250, 50));
 
-        jLabel7.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
-        jLabel7.setText("PRECIO M. P.");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 250, 40));
+        lblPrecioMP.setFont(new java.awt.Font("Wide Latin", 1, 18)); // NOI18N
+        lblPrecioMP.setText("PRECIO M. P.");
+        getContentPane().add(lblPrecioMP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 250, 40));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("MONEDA:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        lblMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblMoneda.setText("MONEDA:");
+        getContentPane().add(lblMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 190, -1));
+        txtMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        getContentPane().add(txtMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 190, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblJCIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
+        getContentPane().add(lblJCIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(135, 206, 235));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 380));
@@ -129,10 +129,10 @@ public class AgregarPrecioMP extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String calibre = jTextField1.getText();
-        String precioUni = jTextField2.getText();
-        String moneda = jTextField3.getText();
+    private void btnGuardarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPrecioActionPerformed
+        String calibre = txtCalibre.getText();
+        String precioUni = txtPU.getText();
+        String moneda = txtMoneda.getText();
         if(!calibre.trim().equals("")){        
             float f=Float.parseFloat(precioUni);
             this.precio.setCalibre(calibre);
@@ -140,7 +140,7 @@ public class AgregarPrecioMP extends javax.swing.JFrame {
             this.precio.setMoneda(moneda);
 
             try{
-                if(this.precioMP_servicio.existeCalibre(jTextField1.getText())== 0)
+                if(this.precioMP_servicio.existeCalibre(txtCalibre.getText())== 0)
                 {
                     this.precioMP_servicio.agregar(Conexion.obtener(), this.precio);
                     JOptionPane.showMessageDialog(this, "DATOS GUARDADOS.");
@@ -161,17 +161,17 @@ public class AgregarPrecioMP extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "HAY CAMPOS INCOMPLETOS.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGuardarPrecioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         AgregarPrecioMP.this.dispose();
         PrecioMPGUI pmp = new PrecioMPGUI(mod);
         pmp.setVisible(true);
         pmp.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-    }//GEN-LAST:event_jTextField1KeyTyped
+    private void txtCalibreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCalibreKeyTyped
+    }//GEN-LAST:event_txtCalibreKeyTyped
 
     /**
      * @param args the command line arguments
@@ -210,17 +210,17 @@ public class AgregarPrecioMP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnGuardarPrecio;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblAgregar;
+    private javax.swing.JLabel lblCalibre;
+    private javax.swing.JLabel lblJCIcono;
+    private javax.swing.JLabel lblMoneda;
+    private javax.swing.JLabel lblPU;
+    private javax.swing.JLabel lblPrecioMP;
+    private javax.swing.JTextField txtCalibre;
+    private javax.swing.JTextField txtMoneda;
+    private javax.swing.JTextField txtPU;
     // End of variables declaration//GEN-END:variables
 }

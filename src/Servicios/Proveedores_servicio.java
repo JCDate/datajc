@@ -58,6 +58,35 @@ public class Proveedores_servicio {
       }
        
    }
+   
+   public void eliminar(Connection conexion,  ProveedoresM prov) throws SQLException {
+       try{
+         PreparedStatement consulta;
+         PreparedStatement enabledForeignKey;
+         PreparedStatement disabledForeignKey;
+            enabledForeignKey = conexion.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
+            enabledForeignKey .executeUpdate();
+            consulta = conexion.prepareStatement("DELETE FROM " + this.tabla + " WHERE nombre=? AND colonia=? AND parque=? AND codigoPostal=? AND ciudad=? AND estado=? AND pais=? AND calibre=? AND id_prov = ?");
+            consulta.setString(1, prov.getNombre());
+            consulta.setString(2, prov.getColonia());
+            consulta.setString(3, prov.getParque());
+            consulta.setInt(4, prov.getCodigoPostal());
+            consulta.setString(5, prov.getCiudad());
+            consulta.setString(6, prov.getEstado());
+            consulta.setString(7, prov.getPais());
+            consulta.setString(8, prov.getCalibre());
+            consulta.setInt(9, prov.getId_prov());
+            consulta.executeUpdate();
+            disabledForeignKey = conexion.prepareStatement("SET FOREIGN_KEY_CHECKS=1");
+            disabledForeignKey .executeUpdate();
+      }catch(SQLException ex){
+         throw new SQLException(ex);
+      }
+       
+   }
+   
+   
+   
 
    public List<ProveedoresM> recuperarTodas(Connection conexion) throws SQLException{
       List<ProveedoresM> prov = new ArrayList<>();

@@ -8,6 +8,7 @@ package MateriaPrima;
 import Inventario.InventarioGUI;
 import MateriaPrimaRec.MateriaPirmaRecGUI;
 import Modelos.MateriaPrimaM;
+import Modelos.OrdenCompra;
 import Modelos.Usuarios;
 import PrecioMP.PrecioMPGUI;
 import Pronostico.PronosticoGUI;
@@ -28,6 +29,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -72,8 +74,8 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         jButton4.setVisible(false);
         
          //Boton Exportar Materia Prima
-        jButton6.setFocusPainted(false);
-        jButton6.setBorderPainted(false);
+        btnGenerarExcel.setFocusPainted(true);
+        btnGenerarExcel.setBorderPainted(true);
         //jButton6.setContentAreaFilled(false);
 
     }
@@ -89,14 +91,14 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         jButton4.setVisible(false);
 
         //Boton Exportar Materia Prima
-        jButton6.setFocusPainted(false);
-        jButton6.setBorderPainted(false);
+        btnGenerarExcel.setFocusPainted(false);
+        btnGenerarExcel.setBorderPainted(false);
         //jButton6.setContentAreaFilled(false);
 
         if(mod.getId_tipo()== 4){
-            jButton2.setEnabled(false);
-            jButton4.setEnabled(false);
-            jButton1.setEnabled(false);
+            btnModificar.setEnabled(true);
+            jButton4.setEnabled(true);
+            btnAgregarMateriaPrima.setEnabled(true);
         }  
     }
     
@@ -110,7 +112,6 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
     
     private void MateriaPrimaGUI(){
         try{
-            
             this.mp = this.materiaprima_servicio.recuperarTodas(Conexion.obtener());
             String solicitar = null;
             DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
@@ -126,7 +127,6 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                     this.mp.get(i).getAprobacion(), 
                 });  
             }
-            
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(this, "Ha surgido un error y no se han podido recuperar los registros");
@@ -138,23 +138,18 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
     
     public void Filtro(){
         int ColumnaTabla = 0;
-       trs.setRowFilter(RowFilter.regexFilter(jtxtfiltro.getText(), ColumnaTabla));
+        trs.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), ColumnaTabla));
     }
-  
-   public void serviaceroPDF() throws IOException, SQLException{
-   
-       try (PDDocument doc = new PDDocument()) {
+
+    public void serviaceroPDF() throws IOException, SQLException{
+        try (PDDocument doc = new PDDocument()) {
             PDPage page = new PDPage();
             doc.addPage(page);
-            
             //Imagen logo
-
             try (PDPageContentStream contentStream = new PDPageContentStream(doc, page)) {
+                PDImageXObject pdImage = PDImageXObject.createFromFile(direcciomImg, doc);
                 
-                PDImageXObject pdImage = PDImageXObject. createFromFile (direcciomImg, doc);
-
-                contentStream.drawImage(pdImage, 20, 650,120,120);  
-                
+                contentStream.drawImage(pdImage, 20,650,120,120);  
                 contentStream.beginText();
                 contentStream.setFont(PDType1Font.HELVETICA, 16);
                 contentStream.newLineAtOffset(280, page.getMediaBox().getHeight() - 30);
@@ -199,17 +194,16 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                 LocalDate fechaA = LocalDate.now();
 
                 contentStream.beginText();
-                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.setFont(PDType1Font.HELVETICA, 16);
                 contentStream.newLineAtOffset(35, page.getMediaBox().getHeight() - 190);
                 contentStream.showText("Fecha: " + fechaA);
                 contentStream.endText();
                 
                 contentStream.beginText();
-                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
                 contentStream.newLineAtOffset(270, page.getMediaBox().getHeight() - 190);
                 contentStream.showText("ORDEN DE COMPRA ");
                 contentStream.endText();
-                
                 //Formato ultimos dos digitos del año, semana, dia y consecutivo
                 //Ultimos dos digitos del año
                 DateFormat df = new SimpleDateFormat("yy"); // Just the year, with 2 digits
@@ -224,13 +218,13 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd");
                 LocalDate fecha = LocalDate.now();
                 String dia = fecha.format(formato);
-                
-               //Numero consecutivo 
-               int contador=1;
+
+                //Numero consecutivo 
+                int contador=1;
                
                 String salida = null;         
                 java.sql.Statement st = cn.createStatement();
-                try {
+                 try {
                     PreparedStatement consulta = cn.prepareStatement("INSERT INTO factura (Numfactura) VALUES("+contador+")");
                     consulta.executeUpdate();
                     
@@ -246,6 +240,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                 }
                 
                 String orden=formattedDate+semana+dia+salida;
+              
                 contentStream.beginText();
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
                 contentStream.newLineAtOffset(490, page.getMediaBox().getHeight() - 190);
@@ -523,84 +518,84 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                     descripcion6 = rsD6.getString("descripcion"); 
                  }
 
-                 String sqlPes = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali1+"'";
+                 String sqlPes = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali1+"' AND preciomp.moneda='USD' ";
                  ResultSet rsPes = st.executeQuery(sqlPes);
                  String peso = null;
                  if(rsPes.next()== true){
                     peso = rsPes.getString("pesoUnitario");   
                  }
                  
-                 String sqlPes2 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali2+"'";
+                    String sqlPes2 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali2+"'  AND preciomp.moneda='USD' ";
                  ResultSet rsPes2 = st.executeQuery(sqlPes2);
                  String peso2 = null;
                  if(rsPes2.next()== true){
                     peso2 = rsPes2.getString("pesoUnitario");
                  }
                  
-                 String sqlPes3 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali3+"'";
+                 String sqlPes3 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali3+"' AND preciomp.moneda='USD' ";
                  ResultSet rsPes3 = st.executeQuery(sqlPes3);
                  String peso3 = null;
                  if(rsPes3.next()== true){
                     peso3 = rsPes3.getString("pesoUnitario");
                  }
                  
-                 String sqlPes4 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali4+"'";
+                 String sqlPes4 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali4+"' AND preciomp.moneda='USD' ";
                  ResultSet rsPes4 = st.executeQuery(sqlPes4);
                  String peso4 = null;
                  if(rsPes4.next()== true){
                     peso4 = rsPes4.getString("pesoUnitario");
                  }
                  
-                 String sqlPes5 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali5+"'";
+                 String sqlPes5 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali5+"' AND preciomp.moneda='USD' ";
                  ResultSet rsPes5 = st.executeQuery(sqlPes5);
                  String peso5 = null;
                  if(rsPes5.next()== true){
                     peso5 = rsPes5.getString("pesoUnitario");
                  }
                  
-                 String sqlPes6 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali6+"'";
+                 String sqlPes6 = "SELECT precioMP.pesoUnitario FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali6+"' AND preciomp.moneda='USD' ";
                  ResultSet rsPes6 = st.executeQuery(sqlPes6);
                  String peso6 = null;
                  if(rsPes6.next() == true){
                     peso6 = rsPes6.getString("pesoUnitario");
                  }
                  
-                 String sqlMon = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali1+ "'";
-                 ResultSet rsMon = st.executeQuery(sqlMon);
+                 String sqlMon = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali1+ "' AND precioMP.moneda='USD' ";
+                 ResultSet rsMon = st.executeQuery(sqlMon); 
                  String moneda = null;
                  if(rsMon.next()== true){
                     moneda = rsMon.getString("moneda");
                  }
                  
-                 String sqlMon2 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali2+ "'";
+                 String sqlMon2 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali2+ "' AND precioMP.moneda='USD' ";
                  ResultSet rsMon2 = st.executeQuery(sqlMon2);
                  String moneda2 = null;
                  if(rsMon2.next()== true){
                     moneda2 = rsMon2.getString("moneda");
                  }
                  
-                 String sqlMon3 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali3+ "'";
+                 String sqlMon3 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali3+ "' AND precioMP.moneda='USD' ";
                  ResultSet rsMon3 = st.executeQuery(sqlMon3);
                  String moneda3 = null;
                  if(rsMon3.next()== true){
                     moneda3 = rsMon3.getString("moneda");
                  }
                  
-                 String sqlMon4 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali4+ "'";
+                 String sqlMon4 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali4+ "' AND precioMP.moneda='USD' ";
                  ResultSet rsMon4 = st.executeQuery(sqlMon4);
                  String moneda4 = null;
                  if(rsMon4.next()== true){
                     moneda4 = rsMon4.getString("moneda");
                  }
                  
-                 String sqlMon5 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali5+ "'";
+                 String sqlMon5 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali5+ "' AND precioMP.moneda='USD' ";
                  ResultSet rsMon5 = st.executeQuery(sqlMon5);
                  String moneda5 = null;
                  if(rsMon5.next()== true){
                     moneda5 = rsMon5.getString("moneda");
                  }
                  
-                 String sqlMon6 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali6+ "'";
+                 String sqlMon6 = "SELECT precioMP.moneda FROM preciomp, proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.calibre= preciomp.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND materia_prima.calibre='"+cali6+ "' AND precioMP.moneda='USD'  ";
                  ResultSet rsMon6 = st.executeQuery(sqlMon6);
                  String moneda6 = null;
                  if(rsMon6.next()== true){
@@ -3619,12 +3614,13 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                    PreparedStatement pst6 = cn.prepareStatement("INSERT INTO mprecibida(ordenCompra, calibre, proveedor,kgSolicitados) VALUES ('"+ orden +"','"+ cali6+"','" + nomProv+"','"+ cantidadK6+ "')");
                     pst6.execute();
                } 
-                
+               
             }
             doc.save("Orden de Compra Serviacero.pdf");
         }
     }
-   
+    
+  
    public void MATINPDF() throws IOException, SQLException{
    
        try (PDDocument doc = new PDDocument()) {
@@ -3709,9 +3705,8 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd");
                 LocalDate fecha = LocalDate.now();
                 String dia = fecha.format(formato);
-                
                 //Numero consecutivo 
-               int contador=1;
+                int contador=1;
                
                 String salida = null;         
                 java.sql.Statement st = cn.createStatement();
@@ -3939,7 +3934,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                  ResultSet rsCali2 = st.executeQuery(sqlCali2);
                  String cali2 = null;
                  if(rsCali2.next()== true) {
-                    cali2 = rsCali2.getString("calibre");;
+                    cali2 = rsCali2.getString("calibre");
                  }
                  
                  String sqlCali3 = "SELECT proveedores.calibre FROM proveedores, materia_prima WHERE materia_prima.aprobacion='SOLICITAR' AND materia_prima.calibre=proveedores.calibre AND proveedores.nombre='MATIN' AND materia_prima.calibre!='"+cali2+"' AND materia_prima.calibre!='"+cali1+"'";
@@ -28085,19 +28080,19 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jtxtfiltro = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAgregarMateriaPrima = new javax.swing.JButton();
+        txtFiltro = new javax.swing.JTextField();
+        lblIconoBuscar = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnGenerarExcel = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
+        lblIconoJC = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -28149,60 +28144,56 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 1120, 430));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/1004733.png"))); // NOI18N
-        jButton1.setText("AGREGAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarMateriaPrima.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAgregarMateriaPrima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/1004733.png"))); // NOI18N
+        btnAgregarMateriaPrima.setText("AGREGAR");
+        btnAgregarMateriaPrima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAgregarMateriaPrimaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 40));
+        getContentPane().add(btnAgregarMateriaPrima, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 150, 40));
 
-        jLabel3.setFont(new java.awt.Font("Wide Latin", 1, 24)); // NOI18N
-        jLabel3.setText("MATERIA PRIMA");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, 40));
-
-        jtxtfiltro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtxtfiltro.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtfiltroActionPerformed(evt);
+                txtFiltroActionPerformed(evt);
             }
         });
-        jtxtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtxtfiltroKeyReleased(evt);
+                txtFiltroKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtxtfiltroKeyTyped(evt);
+                txtFiltroKeyTyped(evt);
             }
         });
-        getContentPane().add(jtxtfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 120, 230, -1));
+        getContentPane().add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 120, 230, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/buscar.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 120, -1, -1));
+        lblIconoBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblIconoBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/buscar.png"))); // NOI18N
+        getContentPane().add(lblIconoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 120, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
-        jButton3.setText("CERRAR");
-        jButton3.setToolTipText("");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/cancelar.png"))); // NOI18N
+        btnCerrar.setText("CERRAR");
+        btnCerrar.setToolTipText("");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 130, 40));
+        getContentPane().add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 130, 40));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
-        jButton2.setText("MODIFICAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
+        btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 150, 40));
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 150, 40));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/modificar.png"))); // NOI18N
@@ -28214,41 +28205,46 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 150, 40));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/actualizar.png"))); // NOI18N
-        jButton5.setText("ACTUALIZAR");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/actualizar.png"))); // NOI18N
+        btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 160, 30));
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 160, 30));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/excel.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerarExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/excel.png"))); // NOI18N
+        btnGenerarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnGenerarExcelActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 0, 60, 60));
+        getContentPane().add(btnGenerarExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 0, 60, 60));
 
         jLabel4.setText("EXPORTAR");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 60, -1, -1));
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Eliminar.png"))); // NOI18N
-        jButton7.setText("ELIMINAR");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Eliminar.png"))); // NOI18N
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 150, 40));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 150, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblIconoJC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
+        getContentPane().add(lblIconoJC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(135, 206, 235));
+
+        jLabel3.setFont(new java.awt.Font("Wide Latin", 1, 24)); // NOI18N
+        jLabel3.setText("MATERIA PRIMA");
+        jPanel1.add(jLabel3);
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 580));
 
         jMenuBar2.setBackground(new java.awt.Color(255, 255, 255));
@@ -28332,7 +28328,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAgregarMateriaPrimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMateriaPrimaActionPerformed
         try {
             MateriaPirmaGUI.this.dispose();
             AgregarMateriaPrima vista = new AgregarMateriaPrima(mod);
@@ -28344,34 +28340,34 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
             Logger.getLogger(MateriaPirmaGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAgregarMateriaPrimaActionPerformed
 
-    private void jtxtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtfiltroActionPerformed
-    }//GEN-LAST:event_jtxtfiltroActionPerformed
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+    }//GEN-LAST:event_txtFiltroActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void jtxtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtfiltroKeyReleased
-    }//GEN-LAST:event_jtxtfiltroKeyReleased
+    private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
+    }//GEN-LAST:event_txtFiltroKeyReleased
 
-    private void jtxtfiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtfiltroKeyTyped
-        jtxtfiltro.addKeyListener(new KeyAdapter(){
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        txtFiltro.addKeyListener(new KeyAdapter(){
             //@Override
             public void keyReleased(final KeyEvent ke){
-                String cadena= (jtxtfiltro.getText());
-                jtxtfiltro.setText(cadena);
+                String cadena= (txtFiltro.getText());
+                txtFiltro.setText(cadena);
                 Filtro(); 
             }
         });
         trs = new TableRowSorter(jTable1.getModel());
         jTable1.setRowSorter(trs);
-        jButton2.setVisible(false);
+        btnModificar.setVisible(false);
         jButton4.setVisible(true);
-    }//GEN-LAST:event_jtxtfiltroKeyTyped
+    }//GEN-LAST:event_txtFiltroKeyTyped
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         int fila_seleccionada = jTable1.getSelectedRow();
         if(fila_seleccionada >= 0){
             try {
@@ -28387,7 +28383,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Por favor seleccione una fila.");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int fila_seleccionada = trs.convertRowIndexToModel(jTable1.getSelectedRow());
@@ -28407,7 +28403,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try {
             
             //Actualizar consumo_kg
@@ -28427,10 +28423,10 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
             pst4.executeUpdate();
             
             //Solicitar o no
-            PreparedStatement pst5 = cn.prepareStatement("UPDATE materia_prima SET materia_prima.aprobacion = if(calibre='0.0035\"' OR calibre='111619-21' OR calibre='20inox' OR calibre='22inox' OR calibre='50080011' OR calibre = '50080012' OR calibre='50080025' OR calibre='50080028' OR calibre='50080400' OR calibre='91150' OR calibre='K547420400', if(materia_prima.kgSolicitar >=1,'NO SOLICITAR','SOLICITAR'), if(materia_prima.kgSolicitar >=2000,'NO SOLICITAR','SOLICITAR'))WHERE materia_prima.calibre= materia_prima.calibre");
-            pst5.executeUpdate();
+            PreparedStatement pst5 = cn.prepareStatement("UPDATE materia_prima SET materia_prima.aprobacion = if(calibre='0.0035\"' OR calibre='111619-21' OR calibre='20inox' OR calibre='22inox' OR calibre='50080011' OR calibre = '50080012' OR calibre='50080025' OR calibre='50080028' OR calibre='50080400' OR calibre='560960' OR calibre='560961' OR calibre='91150' OR calibre='K547420400', if(materia_prima.kgSolicitar >=1 OR materia_prima.kgSolicitar <=>NULL,'NO SOLICITAR','SOLICITAR'), if(materia_prima.kgSolicitar >=2000,'NO SOLICITAR','SOLICITAR'))WHERE materia_prima.calibre= materia_prima.calibre");
             
-             
+            pst5.executeUpdate();
+          
             JOptionPane.showMessageDialog(this, "¡Datos Actualizados!");
             
             try {
@@ -28441,7 +28437,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                 dtm.setRowCount(0);           
      
                 //solicitar = this.mp.get(WIDTH).getAprobacion();
-                java.sql.Statement st = cn.createStatement();
+                java.sql.Statement st = cn.createStatement();        
                 String sql2 ="SELECT materia_prima.calibre FROM proveedores, materia_prima WHERE materia_prima.calibre=proveedores.calibre AND proveedores.nombre='Serviacero Planos S de RL de CV' AND aprobacion='SOLICITAR'";
                 ResultSet rs2 = st.executeQuery(sql2);
                 if(rs2.next()== true){
@@ -28455,7 +28451,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
                       MATINPDF();
                       JOptionPane.showMessageDialog(this, "¡ORDEN DE MATIN GENERADA!");
                 }
-  
+
                 String sql1 = "SELECT materia_prima.calibre FROM materia_prima, proveedores WHERE materia_prima.calibre=proveedores.calibre AND proveedores.nombre='B.F STEEL DE MEXICO S.A DE C.V' AND aprobacion='SOLICITAR'";
                 ResultSet rs1 = st.executeQuery(sql1);
                 if(rs1.next()== true){
@@ -28511,8 +28507,8 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(MateriaPirmaGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
+    }//GEN-LAST:event_btnActualizarActionPerformed
+    
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         try {
             MateriaPirmaGUI.this.dispose();
@@ -28539,12 +28535,12 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenu4MouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnGenerarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarExcelActionPerformed
         excel.WriteExcelMateriaPrima();
         JOptionPane.showMessageDialog(this, "Datos Exportados.");
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnGenerarExcelActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         try{
             int fila_seleccionada = jTable1.getSelectedRow();
             if(fila_seleccionada != -1){           
@@ -28569,7 +28565,7 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error."); 
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
       
@@ -28656,17 +28652,15 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregarMateriaPrima;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGenerarExcel;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -28677,6 +28671,8 @@ public class MateriaPirmaGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jtxtfiltro;
+    private javax.swing.JLabel lblIconoBuscar;
+    private javax.swing.JLabel lblIconoJC;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

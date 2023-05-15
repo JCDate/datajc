@@ -481,8 +481,6 @@ public class SegPzsDaTMGUI extends javax.swing.JFrame {
                             
                             //modificar orden
                            String sqlUpdate= "UPDATE facturacionherramental SET fechaHoraEnvi='"+fecha+"' WHERE orden= '"+orden+"' ";
-                            System.out.println(fecha);
-                            System.out.println("Hola");
                            PreparedStatement pst4 = cn.prepareStatement(sqlUpdate);
                             pst4.executeUpdate();
                             /*PreparedStatement pst4 = cn.prepareStatement("UPDATE facturacionherramental SET fechaHoraEnvi = '"+fecha+"' WHERE facturacionherramental.orden='"+orden+"'");

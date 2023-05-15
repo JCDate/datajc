@@ -53,7 +53,7 @@ public class EliminarProveedores extends javax.swing.JFrame {
     }
     
     private void eliminar(){
-        int respuesta = JOptionPane.showConfirmDialog(null,"La información del proveedor se eliminará ¿Estás de acuerdo?","ELIMINAR DATOS DE PROVEEDOR",JOptionPane.YES_NO_OPTION);
+        int respuesta = JOptionPane.showConfirmDialog(null,"La información del proveedor se eliminará ¿Estás de acuerdo?","ALERTA",JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE);
         if(respuesta == JOptionPane.YES_OPTION){
          //  JOptionPane.showConfirmDialog(null,"¿Estas Completamente de acuerdo?, la información ya no podrá recuperarse");
             String nombre = txtNombre.getText();
