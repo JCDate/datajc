@@ -20,25 +20,25 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
-
 public class JC extends javax.swing.JFrame {
+
     public static JC frmJC;
     public static Registro frmReg;
 
     public JC() {
-        initComponents();        
-        this.setResizable(true);
+        initComponents();
+        this.setResizable(false);
         txtUsuario.setBackground(Color.lightGray);
         txtContraseña.setBackground(Color.lightGray);
-        LineBorder lineBorder =new LineBorder(Color.white, 4, true);
-        txtUsuario.setBorder(lineBorder );
-        txtContraseña.setBorder(lineBorder);  
+        LineBorder lineBorder = new LineBorder(Color.white, 4, true);
+        txtUsuario.setBorder(lineBorder);
+        txtContraseña.setBorder(lineBorder);
     }
-    
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
-              getImage(ClassLoader.getSystemResource("jc/img/jc.png"));
+                getImage(ClassLoader.getSystemResource("jc/img/jc.png"));
 
         return retValue;
     }
@@ -54,14 +54,14 @@ public class JC extends javax.swing.JFrame {
 
         txtUsuario = new javax.swing.JTextField();
         lblIconoUsuario = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        lblUsuario = new javax.swing.JLabel();
+        lblContrasena = new javax.swing.JLabel();
+        lblIconoContrasena = new javax.swing.JLabel();
+        btnIniciarSesion = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         txtContraseña = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblJCDatabase = new javax.swing.JLabel();
+        lblJCIcono = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,42 +74,42 @@ public class JC extends javax.swing.JFrame {
         lblIconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/usuario (2).png"))); // NOI18N
         getContentPane().add(lblIconoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 30, -1));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 21, 255));
-        jLabel1.setText("USUARIO: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 150, 70));
+        lblUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(0, 21, 255));
+        lblUsuario.setText("USUARIO: ");
+        getContentPane().add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 150, 70));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 21, 255));
-        jLabel2.setText("CONTRASEÑA: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        lblContrasena.setBackground(new java.awt.Color(255, 255, 255));
+        lblContrasena.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblContrasena.setForeground(new java.awt.Color(0, 21, 255));
+        lblContrasena.setText("CONTRASEÑA: ");
+        getContentPane().add(lblContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/bloquear.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, -1));
+        lblIconoContrasena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/bloquear.png"))); // NOI18N
+        getContentPane().add(lblIconoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Login_37128.png"))); // NOI18N
-        jButton1.setText("INICIAR SESIÓN ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSesion.setBackground(new java.awt.Color(204, 204, 255));
+        btnIniciarSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/Login_37128.png"))); // NOI18N
+        btnIniciarSesion.setText("INICIAR SESIÓN ");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIniciarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+        getContentPane().add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 255));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/RegistrarU.png"))); // NOI18N
-        jButton3.setText("REGISTRAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setBackground(new java.awt.Color(204, 204, 255));
+        btnRegistrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/RegistrarU.png"))); // NOI18N
+        btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, -1, -1));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, -1, -1));
 
         txtContraseña.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtContraseña.addActionListener(new java.awt.event.ActionListener() {
@@ -119,14 +119,14 @@ public class JC extends javax.swing.JFrame {
         });
         getContentPane().add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 270, 40));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Stencil", 1, 48)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel7.setText("JC DATABASE");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 360, -1));
+        lblJCDatabase.setBackground(new java.awt.Color(255, 255, 255));
+        lblJCDatabase.setFont(new java.awt.Font("Stencil", 1, 48)); // NOI18N
+        lblJCDatabase.setForeground(new java.awt.Color(0, 0, 102));
+        lblJCDatabase.setText("JC DATABASE");
+        getContentPane().add(lblJCDatabase, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 360, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblJCIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jc/img/jcLogo.png"))); // NOI18N
+        getContentPane().add(lblJCIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(135, 206, 235));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 300));
@@ -134,48 +134,48 @@ public class JC extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         SqlUsuarios modSql = new SqlUsuarios();
         Usuarios mod = new Usuarios();
-        
-        Date date= new Date();
-        DateFormat fechaHora= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
-        String pass=new String(txtContraseña.getPassword());
-       
-        if(!txtUsuario.getText().equals("") && !pass.equals("")){
+
+        Date date = new Date();
+        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        String pass = new String(txtContraseña.getPassword());
+
+        if (!txtUsuario.getText().equals("") && !pass.equals("")) {
             try {
                 String nuevoPass = Hash.sha1(pass);
                 mod.setUsuario(txtUsuario.getText());
                 mod.setPassword(nuevoPass);
                 mod.setLast_session(fechaHora.format(date).toString());
-                
-                if(modSql.login(mod)){
-                    
-                    dispose(); 
-                    menu frmmenu= new menu(mod);
+
+                if (modSql.login(mod)) {
+
+                    dispose();
+                    menu frmmenu = new menu(mod);
                     frmmenu.setVisible(true);
-                    
-                }else{
-                    JOptionPane.showMessageDialog(this,"Datos incorrectos");
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Datos incorrectos");
                 }
-                
+
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(JC.class.getName()).log(Level.SEVERE, null, ex);
-            }        
-        }else{
-            JOptionPane.showMessageDialog(this,"Debe ingresar sus datos.");
-        }     
-    }//GEN-LAST:event_jButton1ActionPerformed
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar sus datos.");
+        }
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Registro jc= new Registro();
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        Registro jc = new Registro();
         jc.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,15 +213,15 @@ public class JC extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblContrasena;
+    private javax.swing.JLabel lblIconoContrasena;
     private javax.swing.JLabel lblIconoUsuario;
+    private javax.swing.JLabel lblJCDatabase;
+    private javax.swing.JLabel lblJCIcono;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
